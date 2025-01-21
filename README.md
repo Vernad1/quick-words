@@ -2,8 +2,8 @@
 
 ## TODO
 
-- [ ] Make it deploy (vercel)
-- [ ] Set up a database (vercel postgres)
+- [x] Make it deploy (vercel)
+- [x] Set up a database (vercel postgres)
 - [ ] Database schema (prisma)
 - [ ] Basic ui with mock data
 - [ ] Attach database to UI
