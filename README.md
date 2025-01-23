@@ -4,11 +4,8 @@
 
 - [x] Make it deploy (vercel)
 - [x] Set up a database (vercel postgres)
-- [ ] Database schema (prisma)
-- [ ] Basic ui with mock data
+- [x] Database schema (prisma)
+- [x] Add authentication (w/ next-auth)
+- [ ] Basic ui
 - [ ] Attach database to UI
-- [ ] Add authentication (w/ next-auth)
-- [ ] Dashboard page
-- [ ] Create transaction feature (income/expense)
-- [ ] Create category page
-- [ ] Ratelimiting (upstash)
+- [ ] Create pages
