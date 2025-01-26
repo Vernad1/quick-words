@@ -6,6 +6,7 @@
 - [x] Set up a database (vercel postgres)
 - [x] Database schema (prisma)
 - [x] Add authentication (w/ next-auth)
-- [ ] Basic ui
+- [x] Basic ui
+- [x] Create article form
 - [ ] Attach database to UI
 - [ ] Create pages

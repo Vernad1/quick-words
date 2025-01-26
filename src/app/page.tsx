@@ -8,7 +8,7 @@ export default function HomePage() {
   const session = useSession();
 
   return (
-    <main className="flex min-h-full w-full max-w-[980px] flex-col border border-l-slate-200 bg-white p-3">
+    <main className="flex flex-col bg-white p-3">
       <div className="px-4 py-8">
         <div className="flex gap-3">
           <h1 className="text-2xl">Home</h1>

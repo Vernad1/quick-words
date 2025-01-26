@@ -22,7 +22,10 @@ export default function RootLayout({
             <div className="w-full flex-none md:w-64">
               <SideNav />
             </div>
-            <div className="flex-grow md:overflow-y-auto">{children}</div>
+
+            <div className="min-h-full w-full max-w-[980px] flex-grow border border-l-slate-200 md:overflow-y-auto">
+              {children}
+            </div>
           </div>
         </SessionProvider>
       </body>
