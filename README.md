@@ -9,4 +9,8 @@
 - [x] Basic ui
 - [x] Create article form
 - [ ] Attach database to UI
+- [ ] React hook form
+- [ ] Create article page
+- [ ] Auth page
+- [ ] Articles list page
 - [ ] Create pages

@@ -1,6 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { createArticle, State } from "../lib/actions";
+import { type State, createArticle } from "../lib/actions";
 import { useActionState } from "react";
 import Image from "next/image";
 
@@ -9,6 +9,7 @@ export default function CreateArticleForm() {
   const initialState: State = { message: null, errors: {} };
 
   const [state, formAction] = useActionState(createArticle, initialState);
+
   return (
     <div className="flex gap-2 p-2">
       {session.status === "loading" ? (
@@ -33,7 +34,8 @@ export default function CreateArticleForm() {
         <textarea
           id="text"
           name="text"
-          className="focus:outline-l-gray-200 h-32 w-full resize-none p-2 text-lg outline-2"
+          defaultValue={(state.payload?.get("text") ?? "") as string}
+          className="focus:outline-l-gray-200 h-32 resize-none p-2 text-lg outline-2"
           placeholder="Что нового?"
         />
         <div className="flex justify-between">

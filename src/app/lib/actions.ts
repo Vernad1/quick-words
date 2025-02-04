@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { z } from "zod";
 import { auth } from "~/server/auth";
 import { db } from "~/server/db";
@@ -9,21 +10,23 @@ export type State = {
     text?: string[];
   };
   message?: string | null;
+  payload?: FormData;
 };
 
-const FormSchema = z.object({
+const ArticleSchema = z.object({
   id: z.string(),
   text: z
     .string({
       invalid_type_error: "Неверный тип!",
       required_error: "Текст не может быть пустым!",
     })
-    .min(5, "Нельзя написать меньше 5 символов"),
+    .min(5, "Нельзя написать меньше 5 символов")
+    .max(100, "Превышен лимит символов"),
   createdAt: z.string(),
   auhorId: z.string(),
 });
 
-const CreateInvoice = FormSchema.omit({
+const CreateArticle = ArticleSchema.omit({
   id: true,
   createdAt: true,
   auhorId: true,
@@ -36,7 +39,7 @@ export async function createArticle(
   const user = await auth();
   if (!user?.user.id) throw new Error("Unauthorized");
 
-  const validatedFields = CreateInvoice.safeParse({
+  const validatedFields = CreateArticle.safeParse({
     text: formData.get("text"),
   });
 
@@ -44,6 +47,7 @@ export async function createArticle(
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Create Article.",
+      payload: formData,
     };
   }
 
@@ -65,8 +69,10 @@ export async function createArticle(
       };
     } else {
       return {
-        message: "Database Error: Failed to Create Invoice.",
+        message: "Database Error: Failed to Create Article.",
       };
     }
   }
+
+  redirect("/");
 }

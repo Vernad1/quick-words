@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import SessionProvider from "./components/SessionProver";
 import SideNav from "./components/SideNav";
+import Providers from "./components/Providers";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -15,20 +16,22 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
-        <SessionProvider>
-          <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-            <div className="w-full flex-none md:w-64">
-              <SideNav />
-            </div>
+    <Providers>
+      <html lang="en" className={`${GeistSans.variable}`}>
+        <body>
+          <SessionProvider>
+            <div className="flex flex-col md:flex-row md:justify-center">
+              <div className="top-0 w-full flex-none md:sticky md:h-screen md:w-64">
+                <SideNav />
+              </div>
 
-            <div className="min-h-full w-full max-w-[980px] flex-grow border border-l-slate-200 md:overflow-y-auto">
-              {children}
+              <div className="min-h-full w-full max-w-[980px] flex-grow border border-l-slate-200 md:overflow-y-auto">
+                {children}
+              </div>
             </div>
-          </div>
-        </SessionProvider>
-      </body>
-    </html>
+          </SessionProvider>
+        </body>
+      </html>
+    </Providers>
   );
 }
